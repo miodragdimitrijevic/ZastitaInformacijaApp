@@ -16,11 +16,13 @@ namespace WindowsFormClient
         //Form1 frm1 =new Form1();
        Fajl fajl;
         int userId;
+        DTForm dtform;
+        KnapsackForm ksForm;
+        MD5Form md5Form;
+        XTEAForm xteaForm;
         ServiceReference1.Service1Client proxy;
         public UserForm()
         {
-            
-            
             InitializeComponent();
         }
         public UserForm(User user,int id)
@@ -62,6 +64,29 @@ namespace WindowsFormClient
                 //imeFajlalbl.Text = Convert.ToBase64String(fajl.Nizbajtova);
 
             }*/
+            if (rbtnDoubleT.Checked == true)
+            {
+                dtform = new DTForm();
+                dtform.ShowDialog();
+            }
+            if(rbtnKnapsack.Checked==true)
+            {
+                ksForm = new KnapsackForm();
+                ksForm.ShowDialog();
+            }
+            if(rbtnMD5.Checked==true)
+            {
+                md5Form = new MD5Form();
+                md5Form.ShowDialog();
+            }
+            if(rbtnXTEA.Checked==true)
+            {
+                xteaForm = new XTEAForm();
+                xteaForm.ShowDialog();
+            }
         }
+
+
+      
     }
 }
