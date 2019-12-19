@@ -16,3 +16,15 @@ C:\Users\pc\documents\visual studio 2015\Projects\MycloudStoreApp1\WindowsFormCl
 C:\Users\pc\Documents\GitHub\ZastitaInformacijaApp\MycloudStoreApp1\WindowsFormClient\bin\Debug\WindowsFormClient.exe.config
 C:\Users\pc\Documents\GitHub\ZastitaInformacijaApp\MycloudStoreApp1\WindowsFormClient\obj\Debug\WindowsFormClient.exe
 C:\Users\pc\Documents\GitHub\ZastitaInformacijaApp\MycloudStoreApp1\WindowsFormClient\obj\Debug\WindowsFormClient.pdb
+C:\Users\pc\Documents\GitHub\ZastitaInformacijaApp\MycloudStoreApp1\WindowsFormClient\bin\Debug\WindowsFormClient.exe
+C:\Users\pc\Documents\GitHub\ZastitaInformacijaApp\MycloudStoreApp1\WindowsFormClient\bin\Debug\WindowsFormClient.pdb
+C:\Users\pc\Documents\GitHub\ZastitaInformacijaApp\MycloudStoreApp1\WindowsFormClient\bin\Debug\MySql.Data.dll
+C:\Users\pc\Documents\GitHub\ZastitaInformacijaApp\MycloudStoreApp1\WindowsFormClient\bin\Debug\Google.Protobuf.dll
+C:\Users\pc\Documents\GitHub\ZastitaInformacijaApp\MycloudStoreApp1\WindowsFormClient\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\pc\Documents\GitHub\ZastitaInformacijaApp\MycloudStoreApp1\WindowsFormClient\bin\Debug\Renci.SshNet.dll
+C:\Users\pc\Documents\GitHub\ZastitaInformacijaApp\MycloudStoreApp1\WindowsFormClient\bin\Debug\MySql.Data.xml
+C:\Users\pc\Documents\GitHub\ZastitaInformacijaApp\MycloudStoreApp1\WindowsFormClient\obj\Debug\WindowsFormClient.csprojResolveAssemblyReference.cache
+C:\Users\pc\Documents\GitHub\ZastitaInformacijaApp\MycloudStoreApp1\WindowsFormClient\obj\Debug\WindowsFormClient.Form1.resources
+C:\Users\pc\Documents\GitHub\ZastitaInformacijaApp\MycloudStoreApp1\WindowsFormClient\obj\Debug\WindowsFormClient.Properties.Resources.resources
+C:\Users\pc\Documents\GitHub\ZastitaInformacijaApp\MycloudStoreApp1\WindowsFormClient\obj\Debug\WindowsFormClient.UserForm.resources
+C:\Users\pc\Documents\GitHub\ZastitaInformacijaApp\MycloudStoreApp1\WindowsFormClient\obj\Debug\WindowsFormClient.csproj.GenerateResource.Cache

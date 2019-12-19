@@ -18,6 +18,8 @@ namespace MycloudStoreApp1
         int GetIdUser(string ime, string pass);
         [OperationContract]
         void insertInFiles(byte[] bajtoviFajla, string metoda, string hashkod, int idKorisnik, string naziv);
+        [OperationContract]
+        List<string> getUserFiles(int userId);
     }
 
     // Use a data contract as illustrated in the sample below to add composite types to service operations.

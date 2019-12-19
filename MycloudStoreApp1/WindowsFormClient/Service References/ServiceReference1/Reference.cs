@@ -32,6 +32,12 @@ namespace WindowsFormClient.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/insertInFiles", ReplyAction="http://tempuri.org/IService1/insertInFilesResponse")]
         System.Threading.Tasks.Task insertInFilesAsync(byte[] bajtoviFajla, string metoda, string hashkod, int idKorisnik, string naziv);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getUserFiles", ReplyAction="http://tempuri.org/IService1/getUserFilesResponse")]
+        string[] getUserFiles(int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getUserFiles", ReplyAction="http://tempuri.org/IService1/getUserFilesResponse")]
+        System.Threading.Tasks.Task<string[]> getUserFilesAsync(int userId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -83,6 +89,14 @@ namespace WindowsFormClient.ServiceReference1 {
         
         public System.Threading.Tasks.Task insertInFilesAsync(byte[] bajtoviFajla, string metoda, string hashkod, int idKorisnik, string naziv) {
             return base.Channel.insertInFilesAsync(bajtoviFajla, metoda, hashkod, idKorisnik, naziv);
+        }
+        
+        public string[] getUserFiles(int userId) {
+            return base.Channel.getUserFiles(userId);
+        }
+        
+        public System.Threading.Tasks.Task<string[]> getUserFilesAsync(int userId) {
+            return base.Channel.getUserFilesAsync(userId);
         }
     }
 }

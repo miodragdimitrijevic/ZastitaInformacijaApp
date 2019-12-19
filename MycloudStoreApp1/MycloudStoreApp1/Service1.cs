@@ -76,5 +76,31 @@ namespace MycloudStoreApp1
                 dbCon.CloseConnection();
             }
         }
+        public List<string> getUserFiles(int userId)
+        {
+            List<string> fajlovi = new List<string>();
+
+            string query = "SELECT* FROM fajl WHERE id_korisnika='" + userId + "';";
+
+            if(dbCon.OpenConnection()==true)
+            {
+                MySqlCommand cmd = new MySqlCommand(query, dbCon.connection);
+                
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+                while(dataReader.Read())
+                {
+                    fajlovi.Add(Convert.ToString(dataReader["naziv" + ""]));
+                   
+                }
+                dataReader.Close();
+                dbCon.CloseConnection();
+                return fajlovi;
+            }
+            else
+            {
+                return fajlovi;
+            }
+
+        }
     }
 }

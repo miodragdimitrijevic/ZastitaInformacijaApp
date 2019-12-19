@@ -32,18 +32,26 @@ namespace WindowsFormClient
             userId = id;
             //MessageBox.Show(Convert.ToString(userId));
             label2.Text = user.Ime;
+            List<string> pomNiz = new List<string>();
+            pomNiz = proxy.getUserFiles(userId).ToList();
+            
+            foreach(string el in pomNiz)
+            {
+                fajloviList.Items.Add(el);
+            }
             
 
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            DialogResult dr = openFileDialog1.ShowDialog();
+            /*DialogResult dr = openFileDialog1.ShowDialog();
             if(dr==DialogResult.OK)
             {
                 //StringBuilder builder = new StringBuilder();
                 //SHA1Managed sha1 = new SHA1Managed();
-                fajl.Naziv = openFileDialog1.FileName;
+                string pom = openFileDialog1.FileName;
+                fajl.Naziv = System.IO.Path.GetFileName(pom);
                 fajl.Nizbajtova = File.ReadAllBytes(fajl.Naziv);
                 fajl.Hashkod = "Hash";
                 fajl.Metoda = "Metoda";
@@ -53,7 +61,7 @@ namespace WindowsFormClient
                 
                 //imeFajlalbl.Text = Convert.ToBase64String(fajl.Nizbajtova);
 
-            }
+            }*/
         }
     }
 }
