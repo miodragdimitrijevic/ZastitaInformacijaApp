@@ -18,8 +18,9 @@ namespace WindowsFormClient
         int userId;
         DTForm dtform;
         KnapsackForm ksForm;
-        MD5Form md5Form;
+      
         XTEAForm xteaForm;
+        SaveFileForm saveFileForm;
         ServiceReference1.Service1Client proxy;
         public UserForm()
         {
@@ -71,14 +72,11 @@ namespace WindowsFormClient
             }
             if(rbtnKnapsack.Checked==true)
             {
-                ksForm = new KnapsackForm();
+                
+                ksForm = new KnapsackForm(userId);
                 ksForm.ShowDialog();
             }
-            if(rbtnMD5.Checked==true)
-            {
-                md5Form = new MD5Form();
-                md5Form.ShowDialog();
-            }
+            
             if(rbtnXTEA.Checked==true)
             {
                 xteaForm = new XTEAForm();
@@ -86,7 +84,11 @@ namespace WindowsFormClient
             }
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            saveFileForm = new SaveFileForm(userId);
+            saveFileForm.ShowDialog();
 
-      
+        }
     }
 }

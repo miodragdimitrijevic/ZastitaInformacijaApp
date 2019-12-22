@@ -28,3 +28,8 @@ C:\Users\pc\Documents\GitHub\ZastitaInformacijaApp\MycloudStoreApp1\WindowsFormC
 C:\Users\pc\Documents\GitHub\ZastitaInformacijaApp\MycloudStoreApp1\WindowsFormClient\obj\Debug\WindowsFormClient.Properties.Resources.resources
 C:\Users\pc\Documents\GitHub\ZastitaInformacijaApp\MycloudStoreApp1\WindowsFormClient\obj\Debug\WindowsFormClient.UserForm.resources
 C:\Users\pc\Documents\GitHub\ZastitaInformacijaApp\MycloudStoreApp1\WindowsFormClient\obj\Debug\WindowsFormClient.csproj.GenerateResource.Cache
+C:\Users\pc\Documents\GitHub\ZastitaInformacijaApp\MycloudStoreApp1\WindowsFormClient\obj\Debug\WindowsFormClient.XTEAForm.resources
+C:\Users\pc\Documents\GitHub\ZastitaInformacijaApp\MycloudStoreApp1\WindowsFormClient\obj\Debug\WindowsFormClient.SaveFileForm.resources
+C:\Users\pc\Documents\GitHub\ZastitaInformacijaApp\MycloudStoreApp1\WindowsFormClient\obj\Debug\WindowsFormClient.KnapsackForm.resources
+C:\Users\pc\Documents\GitHub\ZastitaInformacijaApp\MycloudStoreApp1\WindowsFormClient\bin\Debug\CryptoLib.dll
+C:\Users\pc\Documents\GitHub\ZastitaInformacijaApp\MycloudStoreApp1\WindowsFormClient\bin\Debug\CryptoLib.pdb

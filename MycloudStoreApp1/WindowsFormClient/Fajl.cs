@@ -12,6 +12,7 @@ namespace WindowsFormClient
         private byte[] nizbajtova;
         private string metoda;
         private string hashKod;
+        private string textFajla;
 
 
         public Fajl()
@@ -43,6 +44,12 @@ namespace WindowsFormClient
 
         }
         public string Hashkod
+        {
+            get;
+            set;
+
+        }
+        public string Textfajla
         {
             get;
             set;
