@@ -82,8 +82,27 @@ namespace MycloudStoreApp1
                 return "";
             }
         }
+        public string GetMethod(int id,string imeFajla)
+        {
 
-        public void insertInFiles(byte[] bajtoviFajla, string metoda, string hashkod, int idKorisnik, string naziv,string textfajla)
+            string text;
+            string query = "SELECT metoda FROM fajl WHERE (id_korisnika='" + id + "'AND naziv='" + imeFajla + "');";
+            if (dbCon.OpenConnection() == true)
+            {
+                MySqlCommand cmd = new MySqlCommand(query, dbCon.connection);
+                text = cmd.ExecuteScalar().ToString();
+                dbCon.CloseConnection();
+                return text;
+
+            }
+            else
+            {
+                return "";
+            }
+
+        }
+
+        public void insertInFiles(string bajtoviFajla, string metoda, string hashkod, int idKorisnik, string naziv,string textfajla)
         {
             string query="INSERT INTO fajl (bajtoviFajla,metoda,hashkod,id_korisnika,naziv,textfajla) VALUES ('"+bajtoviFajla+"','"+metoda +"','" + hashkod+ "','"
                 + idKorisnik + "','" + naziv+ "','"+ textfajla+ "');";
@@ -95,31 +114,22 @@ namespace MycloudStoreApp1
             }
         }
 
-        public byte[] getUserFile(int userId,string name)
+        public string getUserFile(int userId,string name)
         {
             //byte[] entitet = new byte[1000];
             //List<byte> entitet = new List<byte>();
-            byte[] prazno = new byte[0];
-            string query = "SELECT * FROM fajl WHERE (id_korisnika='" + userId + "'AND naziv='" + name + "');";
+           // byte[] prazno = new byte[0];
+            string query = "SELECT bajtoviFajla FROM fajl WHERE (id_korisnika='" + userId + "'AND naziv='" + name + "');";
             if(dbCon.OpenConnection()==true)
             {
                 MySqlCommand cmd = new MySqlCommand(query, dbCon.connection);
-                MySqlDataReader dataReader = cmd.ExecuteReader();
-                if (dataReader.Read())
-                {
+                
+                string bajtovi = cmd.ExecuteScalar().ToString();
 
-                    byte[] entitet = (byte[])(dataReader["bajtoviFajla" + ""]);
-                    dataReader.Close();
-                    dbCon.CloseConnection();
-                    return entitet;
+                dbCon.CloseConnection();
 
-                }
-                else
-                {
-                    dataReader.Close();
-                    dbCon.CloseConnection();
-                    return prazno;
-                }
+                return bajtovi;
+                
 
                
 

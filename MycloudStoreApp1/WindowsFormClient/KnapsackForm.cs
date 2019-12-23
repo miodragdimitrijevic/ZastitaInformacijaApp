@@ -16,6 +16,7 @@ namespace WindowsFormClient
     {
         Fajl fajl;
         ServiceReference1.Service1Client proxy;
+        bool flag;
         int userID;
         public KnapsackForm()
         {
@@ -26,71 +27,123 @@ namespace WindowsFormClient
             InitializeComponent();
             userID = userId;
             fajl = new Fajl();
+             flag = false;
             proxy = new ServiceReference1.Service1Client();
+            
 
         }
 
         private void uploadBtn_Click(object sender, EventArgs e)
         {
+            if(flag==false)
+            {
+                MessageBox.Show("Niste generisali kljuceve!");
+
+            }
+            else
+            {
+            
+
             CryptoLib.CryptoClass obj = new CryptoLib.CryptoClass();
             
             
             DialogResult dr = openFileDialog1.ShowDialog();
-            if (dr == DialogResult.OK)
-            {
-                //StringBuilder builder = new StringBuilder();
-                //SHA1Managed sha1 = new SHA1Managed();
-                
-                fajl.Naziv = openFileDialog1.FileName;
-                byte[] pomBajtovi = new byte[File.ReadAllBytes(fajl.Naziv).Length];
-                List<int> lista = new List<int>();
-                pomBajtovi = File.ReadAllBytes(fajl.Naziv);
-
-                string result = "";
-                string[] publicJkey = txtPublicJ.Text.Split(',');
-                int rezultat = 0;
-                foreach(byte b in pomBajtovi)
+                if (dr == DialogResult.OK)
                 {
-                    int integerVrednostbajta = Convert.ToInt32(b);
-                    string binarystring = Convert.ToString(integerVrednostbajta, 2);
-                    string nule = "";
-                    if(binarystring.Length<8)
+                    //StringBuilder builder = new StringBuilder();
+                    //SHA1Managed sha1 = new SHA1Managed();
+
+                    fajl.Naziv = openFileDialog1.FileName;
+                    // fajl.Naziv = fajl.Naziv.Replace(@"\", string.Empty);
+                    // MessageBox.Show(fajl.Naziv);
+                    byte[] pomBajtovi = new byte[File.ReadAllBytes(fajl.Naziv).Length];
+                    List<int> lista = new List<int>();
+                    List<byte> pomlistabajtova = new List<byte>();
+                    pomBajtovi = File.ReadAllBytes(fajl.Naziv);
+
+
+                    StringBuilder strbil1 = new StringBuilder();
+                    StringBuilder strbil2 = new StringBuilder();
+                     for(int k=0;k<pomBajtovi.Length;k++)
+                      {
+                          strbil1.Append(pomBajtovi[k].ToString("x2"));
+
+                      }
+                    MessageBox.Show(strbil1.ToString());
+
+                    /*  string result = "";
+                      string[] publicJkey = txtPublicJ.Text.Split(',');
+                      int rezultat = 0;
+                      foreach(byte b in pomBajtovi)
+                      {
+                          int integerVrednostbajta = Convert.ToInt32(b);
+                          string binarystring = Convert.ToString(integerVrednostbajta, 2);
+                          string nule = "";
+                          if(binarystring.Length<8)
+                          {
+                              for(int i=0;i<8-binarystring.Length;i++)
+                              {
+                                  nule += "0";
+
+                              }
+                          }
+                          string newBinarystring = nule + binarystring;
+
+                          for(int i=0;i<publicJkey.Length;i++)
+                          {
+                              if(newBinarystring[i]=='1')
+                              {
+                                  rezultat += Convert.ToInt32(publicJkey[i]);
+
+
+                              }
+
+                          }
+                          byte[] bajtoviRezultata = BitConverter.GetBytes(rezultat);
+                          foreach (byte ba in bajtoviRezultata)
+                          {
+                              pomlistabajtova.Add(ba);
+
+                          }
+                          lista.Add(rezultat);
+                          rezultat = 0;
+
+                      }
+                      foreach (int el in lista)
+                      {
+                          result += el + " ";
+                      }
+                      //MessageBox.Show(result);
+                      byte[] bajtovizaSlanje = new byte[pomlistabajtova.Count];
+                      int j = 0;
+                      foreach(byte b in pomlistabajtova)
+                      {
+                          bajtovizaSlanje[j] = b;
+                          j++;
+
+                      }*/
+
+
+
+
+                    byte[] bajtovizaSlanje = obj.KnapsackCrypt(pomBajtovi, txtPrivateim.Text, txtPrivateN.Text, txtPublicJ.Text, txtPrivateP.Text, fajl.Naziv);
+                    for (int p = 0; p < bajtovizaSlanje.Length; p++)
                     {
-                        for(int i=0;i<8-binarystring.Length;i++)
-                        {
-                            nule += "0";
-
-                        }
+                        strbil2.Append(bajtovizaSlanje[p].ToString("x2"));
                     }
-                    string newBinarystring = nule + binarystring;
+                    MessageBox.Show(strbil2.ToString());
+                    string pom = obj.MD5Hash(pomBajtovi);
 
-                    for(int i=0;i<publicJkey.Length;i++)
-                    {
-                        if(newBinarystring[i]=='1')
-                        {
-                            rezultat += Convert.ToInt32(publicJkey[i]);
-                            
-                        }
+                    fajl.Hashkod = pom;
+                    hashKnap.Items.Add(pom);
+                    fajl.Textfajla = File.ReadAllText(fajl.Naziv);
+                    fajl.Metoda = "Knapsack";
+                    string stringZaslanje = BitConverter.ToString(bajtovizaSlanje);
 
-                    }
-                    lista.Add(rezultat);
-                    rezultat = 0;
-                    
+
+                    proxy.insertInFiles(stringZaslanje, fajl.Metoda, fajl.Hashkod, userID, fajl.Naziv, fajl.Textfajla);
+
                 }
-                foreach (int el in lista)
-                {
-                    result += el + " ";
-                }
-                MessageBox.Show(result);
-                string pom = obj.MD5Hash(pomBajtovi);
-                fajl.Hashkod = pom;
-                hashKnap.Text = pom;
-                fajl.Textfajla = File.ReadAllText(fajl.Naziv);
-                fajl.Metoda = "Knapsack";
-
-                proxy.insertInFiles(pomBajtovi, fajl.Metoda, fajl.Hashkod, userID, fajl.Naziv,fajl.Textfajla);
-
-
             }
         }
         public void GenerateKeys()
@@ -122,6 +175,7 @@ namespace WindowsFormClient
 
         private void btnGenerate_Click(object sender, EventArgs e)
         {
+            flag = true;
             GenerateKeys();
         }
     }

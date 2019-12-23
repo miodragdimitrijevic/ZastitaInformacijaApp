@@ -31,29 +31,42 @@ namespace WindowsFormClient
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            byte[] pom = new byte[proxy.getUserFile(idUser, txtIme.Text).Length];
-            string pomString;
-            
-            
-            proxy.getUserFile(idUser, txtIme.Text).CopyTo(pom, 0);
 
 
-         
-            SaveFileDialog saveDialog = new SaveFileDialog();
-            //Stream stream;
-            saveDialog.FileName = txtIme.Text;
-            if(saveDialog.ShowDialog()==DialogResult.OK)
+            // byte[] pom = new byte[proxy.getUserFile(idUser, txtIme.Text).Length];
+            // pomString= proxy.getUserFile(idUser, txtIme.Text);
+            /* MessageBox.Show(pomString);
+             StringBuilder strbil2 = new StringBuilder();
+             byte[] pombajtovi = System.Text.Encoding.UTF8.GetBytes(pomString);
+             for (int p = 0; p < pombajtovi.Length; p++)
+             {
+                 strbil2.Append(pombajtovi[p].ToString("x2"));
+             }
+             MessageBox.Show(strbil2.ToString());*/
+           
+            string pomString = proxy.GetMethod(idUser, txtIme.Text);
+
+            if (pomString == "Knapsack")
             {
-                pomString = proxy.GetFileText(idUser, txtIme.Text);
-                StringBuilder strBuilder = new StringBuilder();
-               for(int i =0; i<pom.Length;i++)
+
+                MessageBox.Show(pomString);
+                string path = txtIme.Text.Replace(@"\", string.Empty);
+                char[] chartoTrim = { 'C', ':', '.' };
+
+
+                SaveFileDialog saveDialog = new SaveFileDialog();
+                //Stream stream;
+                // saveDialog.Filter = "*.txt";
+                saveDialog.FileName = txtIme.Text;
+
+                if (saveDialog.ShowDialog() == DialogResult.OK)
                 {
-                    strBuilder.Append(pom[i].ToString("x2"));
+                    string pom = proxy.GetFileText(idUser, txtIme.Text);
 
+
+
+                    File.WriteAllText(saveDialog.FileName, pom);
                 }
-
-                
-                File.WriteAllText(saveDialog.FileName, pomString);
             }
             
             

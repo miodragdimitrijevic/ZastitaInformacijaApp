@@ -28,10 +28,10 @@ namespace WindowsFormClient.ServiceReference1 {
         System.Threading.Tasks.Task<int> GetIdUserAsync(string ime, string pass);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/insertInFiles", ReplyAction="http://tempuri.org/IService1/insertInFilesResponse")]
-        void insertInFiles(byte[] bajtoviFajla, string metoda, string hashkod, int idKorisnik, string naziv, string textfajla);
+        void insertInFiles(string bajtoviFajla, string metoda, string hashkod, int idKorisnik, string naziv, string textfajla);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/insertInFiles", ReplyAction="http://tempuri.org/IService1/insertInFilesResponse")]
-        System.Threading.Tasks.Task insertInFilesAsync(byte[] bajtoviFajla, string metoda, string hashkod, int idKorisnik, string naziv, string textfajla);
+        System.Threading.Tasks.Task insertInFilesAsync(string bajtoviFajla, string metoda, string hashkod, int idKorisnik, string naziv, string textfajla);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getUserFiles", ReplyAction="http://tempuri.org/IService1/getUserFilesResponse")]
         string[] getUserFiles(int userId);
@@ -40,16 +40,22 @@ namespace WindowsFormClient.ServiceReference1 {
         System.Threading.Tasks.Task<string[]> getUserFilesAsync(int userId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getUserFile", ReplyAction="http://tempuri.org/IService1/getUserFileResponse")]
-        byte[] getUserFile(int userId, string name);
+        string getUserFile(int userId, string name);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getUserFile", ReplyAction="http://tempuri.org/IService1/getUserFileResponse")]
-        System.Threading.Tasks.Task<byte[]> getUserFileAsync(int userId, string name);
+        System.Threading.Tasks.Task<string> getUserFileAsync(int userId, string name);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetFileText", ReplyAction="http://tempuri.org/IService1/GetFileTextResponse")]
         string GetFileText(int id, string imeFajla);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetFileText", ReplyAction="http://tempuri.org/IService1/GetFileTextResponse")]
         System.Threading.Tasks.Task<string> GetFileTextAsync(int id, string imeFajla);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetMethod", ReplyAction="http://tempuri.org/IService1/GetMethodResponse")]
+        string GetMethod(int id, string imeFajla);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetMethod", ReplyAction="http://tempuri.org/IService1/GetMethodResponse")]
+        System.Threading.Tasks.Task<string> GetMethodAsync(int id, string imeFajla);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -95,11 +101,11 @@ namespace WindowsFormClient.ServiceReference1 {
             return base.Channel.GetIdUserAsync(ime, pass);
         }
         
-        public void insertInFiles(byte[] bajtoviFajla, string metoda, string hashkod, int idKorisnik, string naziv, string textfajla) {
+        public void insertInFiles(string bajtoviFajla, string metoda, string hashkod, int idKorisnik, string naziv, string textfajla) {
             base.Channel.insertInFiles(bajtoviFajla, metoda, hashkod, idKorisnik, naziv, textfajla);
         }
         
-        public System.Threading.Tasks.Task insertInFilesAsync(byte[] bajtoviFajla, string metoda, string hashkod, int idKorisnik, string naziv, string textfajla) {
+        public System.Threading.Tasks.Task insertInFilesAsync(string bajtoviFajla, string metoda, string hashkod, int idKorisnik, string naziv, string textfajla) {
             return base.Channel.insertInFilesAsync(bajtoviFajla, metoda, hashkod, idKorisnik, naziv, textfajla);
         }
         
@@ -111,11 +117,11 @@ namespace WindowsFormClient.ServiceReference1 {
             return base.Channel.getUserFilesAsync(userId);
         }
         
-        public byte[] getUserFile(int userId, string name) {
+        public string getUserFile(int userId, string name) {
             return base.Channel.getUserFile(userId, name);
         }
         
-        public System.Threading.Tasks.Task<byte[]> getUserFileAsync(int userId, string name) {
+        public System.Threading.Tasks.Task<string> getUserFileAsync(int userId, string name) {
             return base.Channel.getUserFileAsync(userId, name);
         }
         
@@ -125,6 +131,14 @@ namespace WindowsFormClient.ServiceReference1 {
         
         public System.Threading.Tasks.Task<string> GetFileTextAsync(int id, string imeFajla) {
             return base.Channel.GetFileTextAsync(id, imeFajla);
+        }
+        
+        public string GetMethod(int id, string imeFajla) {
+            return base.Channel.GetMethod(id, imeFajla);
+        }
+        
+        public System.Threading.Tasks.Task<string> GetMethodAsync(int id, string imeFajla) {
+            return base.Channel.GetMethodAsync(id, imeFajla);
         }
     }
 }
