@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Windows.Forms;
+using CryptoLib;
 
 namespace WindowsFormClient
 {
@@ -43,16 +44,30 @@ namespace WindowsFormClient
                  strbil2.Append(pombajtovi[p].ToString("x2"));
              }
              MessageBox.Show(strbil2.ToString());*/
-           
+
+            CryptoLib.CryptoClass obj = new CryptoLib.CryptoClass();
             string pomString = proxy.GetMethod(idUser, txtIme.Text);
+            string hashDekriptovanih;
 
             if (pomString == "Knapsack")
             {
 
-                MessageBox.Show(pomString);
+                //MessageBox.Show(pomString);
                 string path = txtIme.Text.Replace(@"\", string.Empty);
                 char[] chartoTrim = { 'C', ':', '.' };
+                string trimedpath = path.Trim(chartoTrim);
+                string fileName = @"D:\Fakukltet\Zastita inforamcija\EnkripcijaProjekat\" + "Knapsack" + trimedpath;
 
+                StreamReader sr = new StreamReader(fileName);
+                string podaciStr = sr.ReadLine();
+
+                byte[] dekriptovaniBajtovi = obj.DecryptKnapsack(podaciStr);
+               
+                hashDekriptovanih = obj.MD5Hash(dekriptovaniBajtovi);
+                listHashKod.Items.Add(hashDekriptovanih);
+
+
+              
 
                 SaveFileDialog saveDialog = new SaveFileDialog();
                 //Stream stream;
@@ -63,11 +78,12 @@ namespace WindowsFormClient
                 {
                     string pom = proxy.GetFileText(idUser, txtIme.Text);
 
+                    string tekstFajla = System.Text.Encoding.UTF8.GetString(dekriptovaniBajtovi);
 
-
-                    File.WriteAllText(saveDialog.FileName, pom);
+                    File.WriteAllText(saveDialog.FileName, tekstFajla);
                 }
             }
+            
             
             
 

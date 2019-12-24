@@ -67,7 +67,7 @@ namespace WindowsFormClient
             }*/
             if (rbtnDoubleT.Checked == true)
             {
-                dtform = new DTForm();
+                dtform = new DTForm(userId);
                 dtform.ShowDialog();
             }
             if(rbtnKnapsack.Checked==true)
@@ -87,6 +87,7 @@ namespace WindowsFormClient
         private void button2_Click(object sender, EventArgs e)
         {
             saveFileForm = new SaveFileForm(userId);
+           
             saveFileForm.ShowDialog();
 
         }

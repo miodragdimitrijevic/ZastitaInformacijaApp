@@ -139,6 +139,7 @@ namespace WindowsFormClient
                     fajl.Textfajla = File.ReadAllText(fajl.Naziv);
                     fajl.Metoda = "Knapsack";
                     string stringZaslanje = BitConverter.ToString(bajtovizaSlanje);
+                    
 
 
                     proxy.insertInFiles(stringZaslanje, fajl.Metoda, fajl.Hashkod, userID, fajl.Naziv, fajl.Textfajla);
