@@ -83,9 +83,25 @@ namespace WindowsFormClient
                     File.WriteAllText(saveDialog.FileName, tekstFajla);
                 }
             }
-            
-            
-            
+            if(pomString=="DT")
+            {
+                string path = txtIme.Text.Replace(@"\", string.Empty);
+                char[] chartoTrim = { 'C', ':', '.' };
+                string trimedpath = path.Trim(chartoTrim);
+                string fileName = @"D:\Fakukltet\Zastita inforamcija\EnkripcijaProjekat\" + "DT" + trimedpath;
+
+                string kriptovaniBajtovi = proxy.getUserFile(idUser, txtIme.Text);
+                StreamReader sr = new StreamReader(fileName);
+                string podaciStr = sr.ReadLine();
+                string heshString = obj.DTDecrypt(kriptovaniBajtovi, podaciStr);
+                hashDekriptovanih = obj.MD5Hash(heshString);
+                listHashKod.Items.Add(hashDekriptovanih);
+
+
+            }
+
+
+
 
 
         }
