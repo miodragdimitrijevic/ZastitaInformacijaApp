@@ -22,6 +22,7 @@ namespace WindowsFormClient
         XTEAForm xteaForm;
         SaveFileForm saveFileForm;
         ServiceReference1.Service1Client proxy;
+        User us;
         public UserForm()
         {
             InitializeComponent();
@@ -31,6 +32,7 @@ namespace WindowsFormClient
             InitializeComponent();
             proxy = new ServiceReference1.Service1Client();
             fajl = new Fajl();
+            us = user;
 
             userId = id;
             //MessageBox.Show(Convert.ToString(userId));
@@ -45,7 +47,7 @@ namespace WindowsFormClient
             
 
         }
-
+      
         private void button1_Click(object sender, EventArgs e)
         {
             /*DialogResult dr = openFileDialog1.ShowDialog();
@@ -79,7 +81,7 @@ namespace WindowsFormClient
             
             if(rbtnXTEA.Checked==true)
             {
-                xteaForm = new XTEAForm();
+                xteaForm = new XTEAForm(userId);
                 xteaForm.ShowDialog();
             }
         }
@@ -89,6 +91,19 @@ namespace WindowsFormClient
             saveFileForm = new SaveFileForm(userId);
            
             saveFileForm.ShowDialog();
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            fajloviList.Items.Clear();
+            List<string> pomNiz = new List<string>();
+            pomNiz = proxy.getUserFiles(userId).ToList();
+
+            foreach (string el in pomNiz)
+            {
+                fajloviList.Items.Add(el);
+            }
 
         }
     }

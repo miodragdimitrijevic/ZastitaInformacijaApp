@@ -36,48 +36,57 @@ namespace WindowsFormClient
             DialogResult dr = openFileDialog1.ShowDialog();
             if(dr==DialogResult.OK)
             {
-                fajl.Naziv = openFileDialog1.FileName;
-                byte[] bajtoviFajla = new byte[File.ReadAllBytes(fajl.Naziv).Length];
-                bajtoviFajla = File.ReadAllBytes(fajl.Naziv);
-                string permutacijaX = perX.Text;
-                string permutacijaY = perY.Text;
-                int dimenzijaX = Convert.ToInt32(dimX.Text);
-                int dimenzijaY = Convert.ToInt32(dimY.Text);
-                string bajtoviString = System.Text.Encoding.UTF8.GetString(bajtoviFajla);
-                int faktor;
-                if (dimenzijaX > dimenzijaY)
-                    faktor = dimenzijaX;
-                else
-                    faktor = dimenzijaY;
-                if(bajtoviString.Length<dimenzijaX-dimenzijaY)
+                string putanja = openFileDialog1.FileName;
+                fajl.Naziv = Path.GetFileName(putanja);
+                if (proxy.CheckFile(userId, fajl.Naziv))
                 {
-                    MessageBox.Show("Potrebno je uneti veci fajl");
+                    MessageBox.Show("Fajl vec postoji u bazi!");
+
                 }
                 else
                 {
-                    char[,] transponozicionaMatrica = new char[dimenzijaX, dimenzijaY];
-                    for(int i =0;i<dimenzijaX;i++)
+                    byte[] bajtoviFajla = new byte[File.ReadAllBytes(putanja).Length];
+                    bajtoviFajla = File.ReadAllBytes(putanja);
+                    string permutacijaX = perX.Text;
+                    string permutacijaY = perY.Text;
+                    int dimenzijaX = Convert.ToInt32(dimX.Text);
+                    int dimenzijaY = Convert.ToInt32(dimY.Text);
+                    string bajtoviString = System.Text.Encoding.UTF8.GetString(bajtoviFajla);
+                    int faktor;
+                    if (dimenzijaX > dimenzijaY)
+                        faktor = dimenzijaX;
+                    else
+                        faktor = dimenzijaY;
+                    if (bajtoviString.Length < dimenzijaX - dimenzijaY)
                     {
-                        for(int j=0;j<dimenzijaY;j++)
-                        {
-                            transponozicionaMatrica[i, j] = bajtoviString[dimenzijaY* i + j];
-                        }
+                        MessageBox.Show("Potrebno je uneti veci fajl");
                     }
-                    string stringToHash = "";
-                    for (int i = 0; i < dimenzijaX; i++)
+                    else
                     {
-                        for (int j = 0; j < dimenzijaY; j++)
+                        char[,] transponozicionaMatrica = new char[dimenzijaX, dimenzijaY];
+                        for (int i = 0; i < dimenzijaX; i++)
                         {
-                            stringToHash += transponozicionaMatrica[i, j];
+                            for (int j = 0; j < dimenzijaY; j++)
+                            {
+                                transponozicionaMatrica[i, j] = bajtoviString[dimenzijaY * i + j];
+                            }
                         }
-                   }
-                    string hesovanString = obj.MD5Hash(stringToHash);
-                    string zaslanjeString = obj.DTCrypt(transponozicionaMatrica, permutacijaX, permutacijaY, dimenzijaX, dimenzijaY,fajl.Naziv);
-                    hashList.Items.Add(hesovanString);
-                    fajl.Hashkod = hesovanString;
-                    fajl.Textfajla = File.ReadAllText(fajl.Naziv);
-                    fajl.Metoda = "DT";
-                    proxy.insertInFiles(zaslanjeString, fajl.Metoda, fajl.Hashkod, userId, fajl.Naziv, fajl.Textfajla);
+                        string stringToHash = "";
+                        for (int i = 0; i < dimenzijaX; i++)
+                        {
+                            for (int j = 0; j < dimenzijaY; j++)
+                            {
+                                stringToHash += transponozicionaMatrica[i, j];
+                            }
+                        }
+                        string hesovanString = obj.MD5Hash(stringToHash);
+                        string zaslanjeString = obj.DTCrypt(transponozicionaMatrica, permutacijaX, permutacijaY, dimenzijaX, dimenzijaY, fajl.Naziv);
+                        hashList.Items.Add(hesovanString);
+                        fajl.Hashkod = hesovanString;
+                        fajl.Textfajla = File.ReadAllText(putanja);
+                        fajl.Metoda = "DT";
+                        proxy.insertInFiles(zaslanjeString, fajl.Metoda, fajl.Hashkod, userId, fajl.Naziv, fajl.Textfajla);
+                    }
                 }
             }
         }

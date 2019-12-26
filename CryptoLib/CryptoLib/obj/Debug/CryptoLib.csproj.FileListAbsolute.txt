@@ -1,0 +1,5 @@
+c:\users\pc\documents\visual studio 2015\Projects\CryptoLib\CryptoLib\bin\Debug\CryptoLib.dll
+c:\users\pc\documents\visual studio 2015\Projects\CryptoLib\CryptoLib\bin\Debug\CryptoLib.pdb
+c:\users\pc\documents\visual studio 2015\Projects\CryptoLib\CryptoLib\obj\Debug\CryptoLib.csprojResolveAssemblyReference.cache
+c:\users\pc\documents\visual studio 2015\Projects\CryptoLib\CryptoLib\obj\Debug\CryptoLib.dll
+c:\users\pc\documents\visual studio 2015\Projects\CryptoLib\CryptoLib\obj\Debug\CryptoLib.pdb

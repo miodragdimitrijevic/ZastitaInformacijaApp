@@ -56,6 +56,18 @@ namespace WindowsFormClient.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetMethod", ReplyAction="http://tempuri.org/IService1/GetMethodResponse")]
         System.Threading.Tasks.Task<string> GetMethodAsync(int id, string imeFajla);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/CheckFile", ReplyAction="http://tempuri.org/IService1/CheckFileResponse")]
+        bool CheckFile(int id, string naziv);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/CheckFile", ReplyAction="http://tempuri.org/IService1/CheckFileResponse")]
+        System.Threading.Tasks.Task<bool> CheckFileAsync(int id, string naziv);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetClientPassword", ReplyAction="http://tempuri.org/IService1/GetClientPasswordResponse")]
+        string GetClientPassword(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetClientPassword", ReplyAction="http://tempuri.org/IService1/GetClientPasswordResponse")]
+        System.Threading.Tasks.Task<string> GetClientPasswordAsync(int id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -139,6 +151,22 @@ namespace WindowsFormClient.ServiceReference1 {
         
         public System.Threading.Tasks.Task<string> GetMethodAsync(int id, string imeFajla) {
             return base.Channel.GetMethodAsync(id, imeFajla);
+        }
+        
+        public bool CheckFile(int id, string naziv) {
+            return base.Channel.CheckFile(id, naziv);
+        }
+        
+        public System.Threading.Tasks.Task<bool> CheckFileAsync(int id, string naziv) {
+            return base.Channel.CheckFileAsync(id, naziv);
+        }
+        
+        public string GetClientPassword(int id) {
+            return base.Channel.GetClientPassword(id);
+        }
+        
+        public System.Threading.Tasks.Task<string> GetClientPasswordAsync(int id) {
+            return base.Channel.GetClientPasswordAsync(id);
         }
     }
 }

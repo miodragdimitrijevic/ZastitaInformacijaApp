@@ -48,6 +48,7 @@ namespace MycloudStoreApp1
                 return false;
             }
         }
+        
 
        public int GetIdUser(string name,string pass)
         {
@@ -63,6 +64,22 @@ namespace MycloudStoreApp1
             else
             {
                 return 0;
+            }
+        }
+        public string GetClientPassword(int id)
+        {
+            string pass="";
+            string query = "SELECT lozinka FROM korisnik WHERE id='" + id+"';" ;
+            if (dbCon.OpenConnection() == true)
+            {
+                MySqlCommand cmd = new MySqlCommand(query, dbCon.connection);
+                pass = Convert.ToString(cmd.ExecuteScalar() + "");
+                dbCon.CloseConnection();
+                return pass;
+            }
+            else
+            {
+                return pass;
             }
         }
         public string GetFileText(int id ,string imeFajla)
@@ -165,6 +182,35 @@ namespace MycloudStoreApp1
                 return fajlovi;
             }
 
+        }
+
+        public bool CheckFile(int id, string naziv)
+        {
+            string query = "SELECT * FROM fajl WHERE (id_korisnika='" + id + "' AND naziv='" + naziv + "');";
+            if (dbCon.OpenConnection() == true)
+            {
+                MySqlCommand cmd = new MySqlCommand(query, dbCon.connection);
+                MySqlDataReader reader = cmd.ExecuteReader();
+                if (reader.HasRows == true)
+                {
+                    reader.Close();
+                    dbCon.CloseConnection();
+                    return true;
+                }
+                else
+                {
+                    reader.Close();
+                    dbCon.CloseConnection();
+                    return false;
+                }
+
+            }
+            else
+            {
+                //reader.Close();
+                dbCon.CloseConnection();
+                return false;
+            }
         }
     }
 }

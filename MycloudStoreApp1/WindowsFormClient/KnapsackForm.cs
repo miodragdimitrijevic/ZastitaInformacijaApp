@@ -50,100 +50,56 @@ namespace WindowsFormClient
             DialogResult dr = openFileDialog1.ShowDialog();
                 if (dr == DialogResult.OK)
                 {
-                    //StringBuilder builder = new StringBuilder();
-                    //SHA1Managed sha1 = new SHA1Managed();
-
-                    fajl.Naziv = openFileDialog1.FileName;
+                    string putanja= openFileDialog1.FileName;
+                    fajl.Naziv = Path.GetFileName(putanja);
+                    
                     // fajl.Naziv = fajl.Naziv.Replace(@"\", string.Empty);
                     // MessageBox.Show(fajl.Naziv);
-                    byte[] pomBajtovi = new byte[File.ReadAllBytes(fajl.Naziv).Length];
-                    List<int> lista = new List<int>();
-                    List<byte> pomlistabajtova = new List<byte>();
-                    pomBajtovi = File.ReadAllBytes(fajl.Naziv);
-
-
-                    StringBuilder strbil1 = new StringBuilder();
-                    StringBuilder strbil2 = new StringBuilder();
-                     for(int k=0;k<pomBajtovi.Length;k++)
-                      {
-                          strbil1.Append(pomBajtovi[k].ToString("x2"));
-
-                      }
-                    MessageBox.Show(strbil1.ToString());
-
-                    /*  string result = "";
-                      string[] publicJkey = txtPublicJ.Text.Split(',');
-                      int rezultat = 0;
-                      foreach(byte b in pomBajtovi)
-                      {
-                          int integerVrednostbajta = Convert.ToInt32(b);
-                          string binarystring = Convert.ToString(integerVrednostbajta, 2);
-                          string nule = "";
-                          if(binarystring.Length<8)
-                          {
-                              for(int i=0;i<8-binarystring.Length;i++)
-                              {
-                                  nule += "0";
-
-                              }
-                          }
-                          string newBinarystring = nule + binarystring;
-
-                          for(int i=0;i<publicJkey.Length;i++)
-                          {
-                              if(newBinarystring[i]=='1')
-                              {
-                                  rezultat += Convert.ToInt32(publicJkey[i]);
-
-
-                              }
-
-                          }
-                          byte[] bajtoviRezultata = BitConverter.GetBytes(rezultat);
-                          foreach (byte ba in bajtoviRezultata)
-                          {
-                              pomlistabajtova.Add(ba);
-
-                          }
-                          lista.Add(rezultat);
-                          rezultat = 0;
-
-                      }
-                      foreach (int el in lista)
-                      {
-                          result += el + " ";
-                      }
-                      //MessageBox.Show(result);
-                      byte[] bajtovizaSlanje = new byte[pomlistabajtova.Count];
-                      int j = 0;
-                      foreach(byte b in pomlistabajtova)
-                      {
-                          bajtovizaSlanje[j] = b;
-                          j++;
-
-                      }*/
-
-
-
-
-                    byte[] bajtovizaSlanje = obj.KnapsackCrypt(pomBajtovi, txtPrivateim.Text, txtPrivateN.Text, txtPublicJ.Text, txtPrivateP.Text, fajl.Naziv);
-                    for (int p = 0; p < bajtovizaSlanje.Length; p++)
+                    if (proxy.CheckFile(userID, fajl.Naziv))
                     {
-                        strbil2.Append(bajtovizaSlanje[p].ToString("x2"));
+                        MessageBox.Show("Ovaj vec postoji u bazi!");
                     }
-                    MessageBox.Show(strbil2.ToString());
-                    string pom = obj.MD5Hash(pomBajtovi);
-
-                    fajl.Hashkod = pom;
-                    hashKnap.Items.Add(pom);
-                    fajl.Textfajla = File.ReadAllText(fajl.Naziv);
-                    fajl.Metoda = "Knapsack";
-                    string stringZaslanje = BitConverter.ToString(bajtovizaSlanje);
-                    
+                    else
+                    {
 
 
-                    proxy.insertInFiles(stringZaslanje, fajl.Metoda, fajl.Hashkod, userID, fajl.Naziv, fajl.Textfajla);
+                        byte[] pomBajtovi = new byte[File.ReadAllBytes(putanja).Length];
+                        List<int> lista = new List<int>();
+                        List<byte> pomlistabajtova = new List<byte>();
+                        pomBajtovi = File.ReadAllBytes(putanja);
 
+
+                       /*StringBuilder strbil1 = new StringBuilder();
+                        StringBuilder strbil2 = new StringBuilder();
+                        for (int k = 0; k < pomBajtovi.Length; k++)
+                        {
+                            strbil1.Append(pomBajtovi[k].ToString("x2"));
+
+                        }
+                        MessageBox.Show(strbil1.ToString());*/
+
+                        
+
+
+
+                        byte[] bajtovizaSlanje = obj.KnapsackCrypt(pomBajtovi, txtPrivateim.Text, txtPrivateN.Text, txtPublicJ.Text, txtPrivateP.Text, fajl.Naziv);
+                       /*for (int p = 0; p < bajtovizaSlanje.Length; p++)
+                        {
+                            strbil2.Append(bajtovizaSlanje[p].ToString("x2"));
+                        }
+                        MessageBox.Show(strbil2.ToString());*/
+                        string pom = obj.MD5Hash(pomBajtovi);
+
+                        fajl.Hashkod = pom;
+                        hashKnap.Items.Add(pom);
+                        fajl.Textfajla = File.ReadAllText(putanja);
+                        fajl.Metoda = "Knapsack";
+                        string stringZaslanje = BitConverter.ToString(bajtovizaSlanje);
+
+
+
+                        proxy.insertInFiles(stringZaslanje, fajl.Metoda, fajl.Hashkod, userID, fajl.Naziv, System.Text.Encoding.UTF8.GetString(pomBajtovi));
+                    }
                 }
             }
         }

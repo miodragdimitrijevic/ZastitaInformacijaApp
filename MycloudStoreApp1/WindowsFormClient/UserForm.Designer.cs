@@ -39,7 +39,7 @@
             this.rbtnKnapsack = new System.Windows.Forms.RadioButton();
             this.rbtnDoubleT = new System.Windows.Forms.RadioButton();
             this.rbtnXTEA = new System.Windows.Forms.RadioButton();
-            this.rbtnMD5 = new System.Windows.Forms.RadioButton();
+            this.button3 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // openFileDialog1
@@ -49,9 +49,9 @@
             // fajloviList
             // 
             this.fajloviList.FormattingEnabled = true;
-            this.fajloviList.Location = new System.Drawing.Point(117, 136);
+            this.fajloviList.Location = new System.Drawing.Point(91, 100);
             this.fajloviList.Name = "fajloviList";
-            this.fajloviList.Size = new System.Drawing.Size(256, 108);
+            this.fajloviList.Size = new System.Drawing.Size(359, 134);
             this.fajloviList.TabIndex = 0;
             // 
             // label1
@@ -74,15 +74,16 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(212, 32);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label2.Location = new System.Drawing.Point(124, 32);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
+            this.label2.Size = new System.Drawing.Size(41, 13);
             this.label2.TabIndex = 3;
             this.label2.Text = "label2";
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(332, 263);
+            this.button1.Location = new System.Drawing.Point(375, 263);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 4;
@@ -92,7 +93,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(77, 263);
+            this.button2.Location = new System.Drawing.Point(84, 263);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 5;
@@ -103,7 +104,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(42, 107);
+            this.label3.Location = new System.Drawing.Point(8, 79);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(74, 13);
             this.label3.TabIndex = 6;
@@ -113,7 +114,7 @@
             // 
             this.rbtnKnapsack.AutoSize = true;
             this.rbtnKnapsack.Checked = true;
-            this.rbtnKnapsack.Location = new System.Drawing.Point(429, 147);
+            this.rbtnKnapsack.Location = new System.Drawing.Point(477, 65);
             this.rbtnKnapsack.Name = "rbtnKnapsack";
             this.rbtnKnapsack.Size = new System.Drawing.Size(73, 17);
             this.rbtnKnapsack.TabIndex = 7;
@@ -124,7 +125,7 @@
             // rbtnDoubleT
             // 
             this.rbtnDoubleT.AutoSize = true;
-            this.rbtnDoubleT.Location = new System.Drawing.Point(429, 170);
+            this.rbtnDoubleT.Location = new System.Drawing.Point(476, 136);
             this.rbtnDoubleT.Name = "rbtnDoubleT";
             this.rbtnDoubleT.Size = new System.Drawing.Size(121, 17);
             this.rbtnDoubleT.TabIndex = 8;
@@ -134,29 +135,29 @@
             // rbtnXTEA
             // 
             this.rbtnXTEA.AutoSize = true;
-            this.rbtnXTEA.Location = new System.Drawing.Point(429, 193);
+            this.rbtnXTEA.Location = new System.Drawing.Point(477, 217);
             this.rbtnXTEA.Name = "rbtnXTEA";
             this.rbtnXTEA.Size = new System.Drawing.Size(53, 17);
             this.rbtnXTEA.TabIndex = 9;
             this.rbtnXTEA.Text = "XTEA";
             this.rbtnXTEA.UseVisualStyleBackColor = true;
             // 
-            // rbtnMD5
+            // button3
             // 
-            this.rbtnMD5.AutoSize = true;
-            this.rbtnMD5.Location = new System.Drawing.Point(429, 216);
-            this.rbtnMD5.Name = "rbtnMD5";
-            this.rbtnMD5.Size = new System.Drawing.Size(48, 17);
-            this.rbtnMD5.TabIndex = 10;
-            this.rbtnMD5.Text = "MD5";
-            this.rbtnMD5.UseVisualStyleBackColor = true;
+            this.button3.Location = new System.Drawing.Point(277, 57);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(158, 23);
+            this.button3.TabIndex = 11;
+            this.button3.Text = "Osvezi svoju listu fajlova";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // UserForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(609, 315);
-            this.Controls.Add(this.rbtnMD5);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.rbtnXTEA);
             this.Controls.Add(this.rbtnDoubleT);
             this.Controls.Add(this.rbtnKnapsack);
@@ -188,6 +189,6 @@
         private System.Windows.Forms.RadioButton rbtnKnapsack;
         private System.Windows.Forms.RadioButton rbtnDoubleT;
         private System.Windows.Forms.RadioButton rbtnXTEA;
-        private System.Windows.Forms.RadioButton rbtnMD5;
+        private System.Windows.Forms.Button button3;
     }
 }

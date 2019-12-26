@@ -26,7 +26,10 @@ namespace MycloudStoreApp1
         string GetFileText(int id, string imeFajla);
         [OperationContract]
         string GetMethod(int id, string imeFajla);
-        
+        [OperationContract]
+        bool CheckFile(int id, string naziv);
+        [OperationContract]
+        string GetClientPassword(int id);
     }
 
     // Use a data contract as illustrated in the sample below to add composite types to service operations.
